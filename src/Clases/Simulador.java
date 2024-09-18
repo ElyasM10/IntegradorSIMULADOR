@@ -121,7 +121,7 @@ public class Simulador {
             tiempoActual = Math.max(tiempoActual, proceso.getInstanteArribo());
 
             tiempoActual += tiempoSeleccion;
-            System.out.println("Asignando partición para el proceso: " + proceso.getNombre());
+            System.out.println("Asignando partición para el proceso: " + proceso.getNombre()+" Tamnanio: "+proceso.getTamanio());
             Particion particion = asignarParticion(listaParticiones,proceso,tamanioMemoria,tiempoSeleccion,tiempoCargaPromedio,tiempoLiberacion);
 
 

@@ -5,24 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6100c580-8447-4a65-b8e7-69912e89a953" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Administracion de Memoria.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Clases/AsignacionMemoria.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Clases/GanttPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Clases/Particion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Clases/Proceso.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Clases/Registro.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Clases/Simulador.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/estado_particiones.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/eventos.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfazGrafica.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tanda1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Clases/Resultado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/AsignacionMemoria.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/AsignacionMemoria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/GanttPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/GanttPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/Simulador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/Simulador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Administracion de Memoria/estado_particiones.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Administracion de Memoria/eventos.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Administracion de Memoria/interfazGrafica.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Administracion de Memoria/interfazGrafica.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Administracion de Memoria/tanda1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Clases/AsignacionMemoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/AsignacionMemoria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Clases/GanttPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/GanttPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Clases/Simulador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Simulador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/estado_particiones.txt" beforeDir="false" afterPath="$PROJECT_DIR$/estado_particiones.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/eventos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/eventos.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfazGrafica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfazGrafica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tanda1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tanda1.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,15 +37,15 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "ElyasM10"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ElyasM10&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
-    "url": "https://github.com/ElyasM10/Administracion-de-Memoria.git",
+    "url": "https://github.com/ElyasM10/IntegradorSIMULADOR",
     "accountId": "c3337bac-ae9c-420c-b109-b8ab907a3fef"
   }
 }]]></component>
@@ -60,16 +58,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.interfazGrafica.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/home/eliasmaldonado/Documentos/Projectos/Administracion de Memoria/src/Main.java&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.interfazGrafica.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/eliasmaldonado/Documentos/Projectos/IntegradorSIMULADOR",
+    "onboarding.tips.debug.path": "/home/eliasmaldonado/Documentos/Projectos/Administracion de Memoria/src/Main.java"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/Clases" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

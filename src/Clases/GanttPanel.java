@@ -8,9 +8,22 @@ import javax.swing.*;
 public class GanttPanel extends JPanel {
     private List<Proceso> procesos;
 
-    public GanttPanel(List<Proceso> procesos) {
-        this.procesos = procesos;
+    public int getTamanioMemoria() {
+        return tamanioMemoria;
     }
+
+    public void setTamanioMemoria(int tamanioMemoria) {
+        this.tamanioMemoria = tamanioMemoria;
+    }
+
+    private  int tamanioMemoria;
+
+    public GanttPanel(List<Proceso> procesos,int tamanioMemoria)
+    {
+        this.procesos = procesos;
+        this.tamanioMemoria = tamanioMemoria;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -39,10 +52,16 @@ public class GanttPanel extends JPanel {
 
         // Etiquetas del eje Y
         g2d.setFont(new Font("Arial", Font.PLAIN, 12));
-        for (int i = 0; i <= chartHeight / 50; i++) {
+
+        // Calcular el rango máximo para el eje Y
+        int intervalos = (int) Math.ceil((double) tamanioMemoria / 10.0);
+
+
+        for (int i = 0; i <= intervalos; i++) {
             int y = xAxisHeight - i * 50;
             g2d.drawLine(xOffset - 10, y, xOffset, y);
-            g2d.drawString(String.valueOf(i * 50), xOffset - 40, y + 5);
+            // Añadir "k" a las etiquetas del eje Y
+            g2d.drawString(String.valueOf(i * 10) + "k", xOffset - 40, y + 5);
         }
 
         // Etiquetas del eje X
@@ -86,9 +105,11 @@ public class GanttPanel extends JPanel {
             y += alturaRectangulo + separacionVertical;
         }
     }
+
     // Método para actualizar la lista de procesos y redibujar el panel
-    public void setProcesos(List<Proceso> procesos) {
+    public void setProcesos(List<Proceso> procesos,int tamanioMemoria) {
         this.procesos = procesos;
+        this.tamanioMemoria = tamanioMemoria;
         repaint();
     }
 }

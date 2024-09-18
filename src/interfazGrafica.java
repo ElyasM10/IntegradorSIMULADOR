@@ -70,11 +70,11 @@ public class interfazGrafica extends JFrame {
         panelEntrada.add(txtTiempoLiberacion);
 
         // Crear el panel de Gantt para mostrar el diagrama
-        ganttPanel = new GanttPanel(new ArrayList<>());
+        ganttPanel = new GanttPanel(new ArrayList<>(), 0);
 
         // Añadir paneles al contenedor principal
         panel.add(panelEntrada, BorderLayout.NORTH);
-        panel.add(ganttPanel, BorderLayout.CENTER);
+      panel.add(ganttPanel, BorderLayout.CENTER);
 
 
         // Boton de cargar y simular
@@ -164,35 +164,35 @@ public class interfazGrafica extends JFrame {
                 break;
         }
 
-        // Configurar otros parámetros
         try {
             int tamanioMemoria = Integer.parseInt(txtTamanioMemoria.getText());
             int tiempoSeleccion = Integer.parseInt(txtTiempoSeleccion.getText());
             int tiempoCargaPromedio = Integer.parseInt(txtTiempoCargaPromedio.getText());
             int tiempoLiberacion = Integer.parseInt(txtTiempoLiberacion.getText());
 
-            //   System.out.println("Tamanio de la memoria: " + tamanioMemoria);
-            //  System.out.println("Tiempo de seleccion: " + tiempoSeleccion);
-            //  System.out.println("Tiempo de carga promedio: " + tiempoCargaPromedio);
-            // System.out.println("Tiempo de liberación: " + tiempoLiberacion);
-
             // Crear el simulador con la estrategia seleccionada
-
-
             simulador = new Simulador(listaProcesos, tamanioMemoria, tiempoSeleccion, tiempoCargaPromedio, tiempoLiberacion, estrategiaAsignacion);
 
-            //   simulador.imprimirDatosSimulador();
+            // Actualizar el panel de Gantt con los nuevos datos
+            ganttPanel.setProcesos(listaProcesos, tamanioMemoria);
+
+            // Redibujar el panel de Gantt
+            ganttPanel.repaint();
+
+            // Simular y actualizar el panel de Gantt
             simulador.simular();
-            mostrarResultados();
+
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Error en el formato de los números: " + ex.getMessage());
         }
     }
 
+
     // Método para mostrar los resultados de la simulacion como un diagrama de Gantt
-    private void mostrarResultados() {
-        ganttPanel.setProcesos(simulador.getProcesos()); // Actualizar el panel de Gantt con los procesos simulados
-    }
+   //private void mostrarResultados() {
+      // ganttPanel.setProcesos(simulador.getProcesos(),tamanioMemoria); // Actualizar el panel de Gantt con los procesos simulados
+    //}
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {

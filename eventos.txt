@@ -1,20 +1,10 @@
-No se pudo asignar el proceso: t1 - Tiempo: 1
-No se pudo asignar el proceso: t2 - Tiempo: 2
-No se pudo asignar el proceso: t3 - Tiempo: 3
-No se pudo asignar el proceso: t4 - Tiempo: 4
-No se pudo asignar el proceso: t5 - Tiempo: 5
-No se pudo asignar el proceso: t6 - Tiempo: 6
-No se pudo asignar el proceso: t7 - Tiempo: 7
-No se pudo asignar el proceso: t8 - Tiempo: 8
-No se pudo asignar el proceso: t9 - Tiempo: 9
-No se pudo asignar el proceso: t10 - Tiempo: 10
-No se pudo asignar el proceso: t1 - Tiempo: 1
-No se pudo asignar el proceso: t2 - Tiempo: 2
-No se pudo asignar el proceso: t3 - Tiempo: 3
-No se pudo asignar el proceso: t4 - Tiempo: 4
-No se pudo asignar el proceso: t5 - Tiempo: 5
-No se pudo asignar el proceso: t6 - Tiempo: 6
-No se pudo asignar el proceso: t7 - Tiempo: 7
-No se pudo asignar el proceso: t8 - Tiempo: 8
-No se pudo asignar el proceso: t9 - Tiempo: 9
-No se pudo asignar el proceso: t10 - Tiempo: 10
+Asignada partición para el proceso: t1 - Partición ID: 0 - Tiempo: 4
+Asignada partición para el proceso: t2 - Partición ID: 1 - Tiempo: 16
+Asignada partición para el proceso: t3 - Partición ID: 2 - Tiempo: 37
+Asignada partición para el proceso: t4 - Partición ID: 3 - Tiempo: 47
+Asignada partición para el proceso: t5 - Partición ID: 4 - Tiempo: 63
+No se pudo asignar el proceso: t6 - Tiempo: 69
+No se pudo asignar el proceso: t7 - Tiempo: 71
+Asignada partición para el proceso: t8 - Partición ID: 5 - Tiempo: 75
+No se pudo asignar el proceso: t9 - Tiempo: 82
+No se pudo asignar el proceso: t10 - Tiempo: 84
