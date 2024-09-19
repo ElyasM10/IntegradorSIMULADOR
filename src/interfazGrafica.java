@@ -106,7 +106,7 @@ public class interfazGrafica extends JFrame {
                 if (datos.length != 5) {
                     JOptionPane.showMessageDialog(this, "Linea en el archivo no válida: " + linea);
                     continue;
-                }
+                 }
 
                 try {
                     int id = Integer.parseInt(datos[0].trim());
@@ -179,8 +179,10 @@ public class interfazGrafica extends JFrame {
             // Redibujar el panel de Gantt
             ganttPanel.repaint();
 
-            // Simular y actualizar el panel de Gantt
-            simulador.simular();
+
+         int fragmentacionExterna= simulador.simular();
+
+         System.out.println("Interfaz FE: "+fragmentacionExterna);
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Error en el formato de los números: " + ex.getMessage());

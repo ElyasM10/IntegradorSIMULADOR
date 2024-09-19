@@ -1,57 +1,57 @@
-Estado de particiones en tiempo 1726672654059:
+Estado de particiones en tiempo 1726701071196:
 ID: 0, Comienzo: 4, Tamaño: 30, Estado: Libre
 ID: -1, Comienzo: 12, Tamaño: 100, Estado: Ocupada
-Estado de particiones en tiempo 1726672654075:
+Estado de particiones en tiempo 1726701071196:
 ID: 0, Comienzo: 4, Tamaño: 30, Estado: Libre
 ID: 1, Comienzo: 4, Tamaño: 20, Estado: Libre
 ID: -1, Comienzo: 21, Tamaño: 80, Estado: Ocupada
-Estado de particiones en tiempo 1726672654076:
+Estado de particiones en tiempo 1726701071196:
 ID: 0, Comienzo: 4, Tamaño: 30, Estado: Libre
 ID: 1, Comienzo: 4, Tamaño: 20, Estado: Libre
 ID: 2, Comienzo: 4, Tamaño: 20, Estado: Libre
 ID: -1, Comienzo: 10, Tamaño: 60, Estado: Ocupada
-Estado de particiones en tiempo 1726672654078:
+Estado de particiones en tiempo 1726701071196:
 ID: 0, Comienzo: 4, Tamaño: 30, Estado: Libre
 ID: 1, Comienzo: 4, Tamaño: 20, Estado: Libre
 ID: 2, Comienzo: 4, Tamaño: 20, Estado: Libre
 ID: 3, Comienzo: 4, Tamaño: 20, Estado: Libre
 ID: -1, Comienzo: 16, Tamaño: 40, Estado: Ocupada
-Estado de particiones en tiempo 1726672654079:
+Estado de particiones en tiempo 1726701071196:
 ID: 0, Comienzo: 4, Tamaño: 30, Estado: Libre
 ID: 1, Comienzo: 4, Tamaño: 20, Estado: Libre
 ID: 2, Comienzo: 4, Tamaño: 20, Estado: Libre
 ID: 3, Comienzo: 4, Tamaño: 20, Estado: Libre
 ID: 4, Comienzo: 4, Tamaño: 30, Estado: Libre
 ID: -1, Comienzo: 8, Tamaño: 10, Estado: Ocupada
-Estado de particiones en tiempo 1726672654082:
+Estado de particiones en tiempo 1726701071196:
 ID: 0, Comienzo: 4, Tamaño: 30, Estado: Libre
 ID: 1, Comienzo: 4, Tamaño: 20, Estado: Libre
 ID: 2, Comienzo: 4, Tamaño: 20, Estado: Libre
 ID: 3, Comienzo: 4, Tamaño: 20, Estado: Libre
 ID: 4, Comienzo: 4, Tamaño: 30, Estado: Libre
 ID: -1, Comienzo: 8, Tamaño: 10, Estado: Ocupada
-Estado de particiones en tiempo 1726672654083:
+Estado de particiones en tiempo 1726701071212:
 ID: 0, Comienzo: 4, Tamaño: 30, Estado: Libre
 ID: 1, Comienzo: 4, Tamaño: 20, Estado: Libre
 ID: 2, Comienzo: 4, Tamaño: 20, Estado: Libre
 ID: 3, Comienzo: 4, Tamaño: 20, Estado: Libre
 ID: 4, Comienzo: 4, Tamaño: 30, Estado: Libre
 ID: -1, Comienzo: 8, Tamaño: 10, Estado: Ocupada
-Estado de particiones en tiempo 1726672654085:
+Estado de particiones en tiempo 1726701071212:
 ID: 0, Comienzo: 4, Tamaño: 30, Estado: Libre
 ID: 1, Comienzo: 4, Tamaño: 20, Estado: Libre
 ID: 2, Comienzo: 4, Tamaño: 20, Estado: Libre
 ID: 3, Comienzo: 4, Tamaño: 20, Estado: Libre
 ID: 4, Comienzo: 4, Tamaño: 30, Estado: Libre
 ID: 5, Comienzo: 4, Tamaño: 10, Estado: Libre
-Estado de particiones en tiempo 1726672654085:
+Estado de particiones en tiempo 1726701071212:
 ID: 0, Comienzo: 4, Tamaño: 30, Estado: Libre
 ID: 1, Comienzo: 4, Tamaño: 20, Estado: Libre
 ID: 2, Comienzo: 4, Tamaño: 20, Estado: Libre
 ID: 3, Comienzo: 4, Tamaño: 20, Estado: Libre
 ID: 4, Comienzo: 4, Tamaño: 30, Estado: Libre
 ID: 5, Comienzo: 4, Tamaño: 10, Estado: Libre
-Estado de particiones en tiempo 1726672654086:
+Estado de particiones en tiempo 1726701071212:
 ID: 0, Comienzo: 4, Tamaño: 30, Estado: Libre
 ID: 1, Comienzo: 4, Tamaño: 20, Estado: Libre
 ID: 2, Comienzo: 4, Tamaño: 20, Estado: Libre

@@ -15,8 +15,8 @@ public class Simulador {
     private int tiempoSeleccion;
     private int tiempoCargaPromedio;
     private int tiempoLiberacion;
-    private Registro registro;
-    private int memoriaTotal;
+   // private Registro registro;
+
 
 
 
@@ -31,13 +31,15 @@ public class Simulador {
         // Inicializamos la lista de particiones antes de pasarla al asignador
         this.listaParticiones = new ArrayList<>();
         this.asignador = new AsignacionMemoria();
+     /*
         try {
             this.registro = new Registro("eventos.txt", "estado_particiones.txt");
         } catch (IOException e) {
             System.out.println("Error al crear los archivos de registro: " + e.getMessage());
         }
+        */
     }
-
+    //Esto solo es usado para saber si el simulador esta funcionando correctamente
     public void imprimirDatosSimulador() {
         System.out.println("Datos del Simulador:");
         System.out.println("--------------------");
@@ -50,133 +52,33 @@ public class Simulador {
 
         System.out.println("Lista de Procesos:");
         for (Proceso proceso : procesos) {
-            System.out.println("  - Proceso: " + proceso.getNombre() + ", Tamaño: " + proceso.getTamanio() + ", Duración: " + proceso.getDuracion());
+            System.out.println("  - Proceso: " + proceso.getNombre() + ", Tamanio: " + proceso.getTamanio() + ", Duración: " + proceso.getDuracion());
         }
 
         System.out.println("Cantidad de Particiones: " + listaParticiones.size());
     }
 
-    /*
-    public Simulador() {
-        this.particiones = new ArrayList<>();
-        this.procesos = new ArrayList<>();
-        this.tamanioMemoria = 0;
-        this.estrategiaActual = Particion.EstrategiaAsignacion.FIRST_FIT;
-        this.tiempoSeleccion = 0;
-        this.tiempoCargaPromedio = 0;
-        this.tiempoLiberacion = 0;
-        this.asignador = new AsignacionMemoria(particiones);
-        try {
-            this.registro = new Registro("eventos.txt", "estado_particiones.txt");
-        } catch (IOException e) {
-            System.out.println("Error al crear los archivos de registro: " + e.getMessage());
-        }
-    }
-        */
-
-
-    //public void simular() {
-    // Collections.sort(procesos, Comparator.comparingInt(Proceso::getInstanteArribo));
-
-    //for (Proceso proceso : procesos) {
-    // Particion particion = asignarParticion(proceso);
-    // if (particion != null) {
-    //registro.registrarEvento("Asignada partición para el proceso: " + proceso.getNombre() +
-    //        " - Partición ID: " + particion.getId() +
-    //      " - Tiempo: " + proceso.getInstanteArribo());
-
-    //  cargarProceso(proceso);
-    //   liberarProceso(proceso, particion);
-    // } else {
-    //    registro.registrarEvento("No se pudo asignar el proceso: " + proceso.getNombre() +
-    //             " - Tiempo: " + proceso.getInstanteArribo());
-    //  }
-    //    registro.registrarEstadoParticiones(particiones);
-    //  }
-
-      /*
-     Tengo un trabajo en el cual tengo que simulador la asignacion de memoria dinamica.
-     El usuario ingresa el tamaño de la memoria que se simularia con una lista.
-     Se lee un archivo con trabajos que serian procesos con un determinado tamanio una vez cargado
-     se elegi el tipo de politica firtsFit,NextFit,BestFit,worstfit se crean particiones respetando
-     la memoria ingresada por el usuario, la lista se va particionando hasta que se llene al tope de la memoria
-     que seria lo que ingresa el usuario los demas trabajos deben esperar que el proceso termine segun la politica
-     para ingresar, nesecitos que me ayudes ya tengo algo hecho, la idea eesta en la imagen que te pase.
-*/
-
     public Simulador() {
     }
-
-    public void simular() {
-        int tiempoActual = 0;
-
-        System.out.println("Entrando al  simulador");
-
-        Particion particionInicial = new Particion(0,-1 ,tamanioMemoria, true, -1);
-
-        listaParticiones.add(particionInicial);
-
-
-        for (Proceso proceso : procesos) {
-            tiempoActual = Math.max(tiempoActual, proceso.getInstanteArribo());
-
-            tiempoActual += tiempoSeleccion;
-            System.out.println("Asignando partición para el proceso: " + proceso.getNombre()+" Tamnanio: "+proceso.getTamanio());
-            Particion particion = asignarParticion(listaParticiones,proceso,tamanioMemoria,tiempoSeleccion,tiempoCargaPromedio,tiempoLiberacion);
-
-
-
-            if (particion != null) {
-                tiempoActual += tiempoCargaPromedio;
-                registro.registrarEvento("Asignada partición para el proceso: " + proceso.getNombre() +
-                        " - Partición ID: " + particion.getId() +
-                        " - Tiempo: " + tiempoActual);
-
-                tiempoActual += proceso.getDuracion();
-
-                tiempoActual += tiempoLiberacion;
-
-                // liberarProceso(proceso, particion);
-            } else {
-                registro.registrarEvento("No se pudo asignar el proceso: " + proceso.getNombre() +
-                        " - Tiempo: " + tiempoActual);
-            }
-            registro.registrarEstadoParticiones(listaParticiones);
-        }
-
-        calcularIndicadores();
-
-        try {
-            registro.cerrar();
-        } catch (IOException e) {
-            System.out.println("Error al cerrar los archivos de registro: " + e.getMessage());
-        }
-
-        imprimirResultados();
-    }
-
-
-
-
-    public Particion asignarParticion(List<Particion> listaParticiones,Proceso proceso,int tamanioMemoria,int tiempoSeleccion,int tiempoCargaPromedio,int tiempoLiberacion) {
+    public Particion asignarParticion(List<Particion> listaParticiones, Proceso proceso, int tiempoActual, int tiempoSeleccion, int tiempoCargaPromedio, int tiempoLiberacion, Resultado resultado) {
         Particion particionAsignada = null;
 
         switch (estrategiaActual) {
             case 1 -> {
                 System.out.println("Entrando a First Fit");
-                particionAsignada = asignador.firstFit(listaParticiones,proceso,tamanioMemoria,tiempoSeleccion,tiempoCargaPromedio,tiempoLiberacion);
+                particionAsignada = asignador.firstFit(listaParticiones,proceso,tiempoActual,tiempoSeleccion,tiempoCargaPromedio,tiempoLiberacion,resultado);
             }
             case 2 -> {
                 System.out.println("Entrando a Best Fit");
-                particionAsignada = asignador.bestFit(listaParticiones,proceso,tamanioMemoria,tiempoSeleccion,tiempoCargaPromedio,tiempoLiberacion);
+                particionAsignada = asignador.bestFit(listaParticiones,proceso,tiempoActual,tiempoSeleccion,tiempoCargaPromedio,tiempoLiberacion);
             }
             case 3 -> {
                 System.out.println("Entrando a Next Fit");
-                particionAsignada = asignador.nextFit(listaParticiones,proceso,tamanioMemoria,tiempoSeleccion,tiempoCargaPromedio,tiempoLiberacion);
+                particionAsignada = asignador.nextFit(listaParticiones,proceso,tiempoActual,tiempoSeleccion,tiempoCargaPromedio,tiempoLiberacion);
             }
             case 4 -> {
                 System.out.println("Entrando a Worst Fit");
-                particionAsignada = asignador.worstFit(listaParticiones,proceso,tamanioMemoria,tiempoSeleccion,tiempoCargaPromedio,tiempoLiberacion);
+                particionAsignada = asignador.worstFit(listaParticiones,proceso,tiempoActual,tiempoSeleccion,tiempoCargaPromedio,tiempoLiberacion);
             }
         }
 
@@ -186,6 +88,55 @@ public class Simulador {
 
         return particionAsignada;
     }
+
+    public int simular() {
+        int tiempoActual = 0;
+
+        System.out.println("Entrando al  simulador");
+
+        Particion particionInicial = new Particion(0,-1 ,tamanioMemoria, true, -1);
+
+        listaParticiones.add(particionInicial);
+
+        Resultado resultado = new Resultado();
+
+        for (int i = 0; i < procesos.size(); i++) {
+            Proceso proceso = procesos.get(i);
+            System.out.println(proceso.getNombre()+" esperando particion");
+            System.out.println("El Tiempo Actual es : "+tiempoActual);
+
+            System.out.println("Asignando partición para : " + proceso.getNombre()+" Tamanio: "+proceso.getTamanio());
+            Particion particion = asignarParticion(listaParticiones,proceso,tiempoActual,tiempoSeleccion,tiempoCargaPromedio,tiempoLiberacion,resultado);
+
+           System.out.println("Tamanio de la lista de procesos:"+procesos.size());
+            System.out.println("------------------------------");
+
+            if (particion!=null){
+             System.out.println("Particion asignada");
+            }
+
+            tiempoActual++;
+        }
+
+   //     System.out.println("La fragmentacion es: "+resultado.getFragmentacion());
+
+
+/*
+        try {
+            registro.cerrar();
+        } catch (IOException e) {
+            System.out.println("Error al cerrar los archivos de registro: " + e.getMessage());
+        }
+*/
+
+
+        return resultado.getFragmentacion();
+    }
+
+
+
+
+
 
 
     /*
