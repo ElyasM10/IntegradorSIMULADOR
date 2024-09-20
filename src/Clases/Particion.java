@@ -85,6 +85,7 @@ public class Particion {
                 ", tiempoInicio=" + tiempoInicio +
                 ", tamanio=" + tamanio +
                 ", estado=" + estado +
+                ", tiempoFinalizacion="+tiempoFinalizacion+
                 '}';
     }
 }

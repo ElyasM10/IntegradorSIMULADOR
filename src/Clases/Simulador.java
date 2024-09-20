@@ -1,7 +1,6 @@
 package Clases;
 
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +14,7 @@ public class Simulador {
     private int tiempoSeleccion;
     private int tiempoCargaPromedio;
     private int tiempoLiberacion;
+    private   List<Particion> particionesFinal = new ArrayList<>();
    // private Registro registro;
 
 
@@ -60,64 +60,51 @@ public class Simulador {
 
     public Simulador() {
     }
-    public Particion asignarParticion(List<Particion> listaParticiones, Proceso proceso, int tiempoActual, int tiempoSeleccion, int tiempoCargaPromedio, int tiempoLiberacion, Resultado resultado) {
+
+    public List<Particion> asignarParticion(List<Particion> listaParticiones, List<Proceso> procesos, int tiempoActual, int tiempoSeleccion, int tiempoCargaPromedio, int tiempoLiberacion, Resultado resultado) {
         Particion particionAsignada = null;
 
         switch (estrategiaActual) {
             case 1 -> {
                 System.out.println("Entrando a First Fit");
-                particionAsignada = asignador.firstFit(listaParticiones,proceso,tiempoActual,tiempoSeleccion,tiempoCargaPromedio,tiempoLiberacion,resultado);
+                particionesFinal = asignador.firstFit(listaParticiones, procesos, tiempoActual, tiempoSeleccion, tiempoCargaPromedio, tiempoLiberacion, resultado);
             }
             case 2 -> {
                 System.out.println("Entrando a Best Fit");
-                particionAsignada = asignador.bestFit(listaParticiones,proceso,tiempoActual,tiempoSeleccion,tiempoCargaPromedio,tiempoLiberacion);
+                particionAsignada = asignador.bestFit(listaParticiones, procesos, tiempoActual, tiempoSeleccion, tiempoCargaPromedio, tiempoLiberacion);
             }
             case 3 -> {
                 System.out.println("Entrando a Next Fit");
-                particionAsignada = asignador.nextFit(listaParticiones,proceso,tiempoActual,tiempoSeleccion,tiempoCargaPromedio,tiempoLiberacion);
+                particionAsignada = asignador.nextFit(listaParticiones, procesos, tiempoActual, tiempoSeleccion, tiempoCargaPromedio, tiempoLiberacion);
             }
             case 4 -> {
                 System.out.println("Entrando a Worst Fit");
-                particionAsignada = asignador.worstFit(listaParticiones,proceso,tiempoActual,tiempoSeleccion,tiempoCargaPromedio,tiempoLiberacion);
+                particionAsignada = asignador.worstFit(listaParticiones, procesos, tiempoActual, tiempoSeleccion, tiempoCargaPromedio, tiempoLiberacion);
             }
         }
 
-        // if (particionAsignada != null) {
-        //   dividirParticion(particionAsignada, proceso.getMemoriaRequerida());
-        // }
-
-        return particionAsignada;
+        return listaParticiones;
     }
+   
 
-    public int simular() {
+    
+public int simular() {
         int tiempoActual = 0;
 
-        System.out.println("Entrando al  simulador");
+        System.out.println("Entrando al simulador");
 
-        Particion particionInicial = new Particion(0,-1 ,tamanioMemoria, true, -1);
-
+        Particion particionInicial = new Particion(0, -1, tamanioMemoria, true, -1);
         listaParticiones.add(particionInicial);
 
         Resultado resultado = new Resultado();
 
-        for (int i = 0; i < procesos.size(); i++) {
-            Proceso proceso = procesos.get(i);
-            System.out.println(proceso.getNombre()+" esperando particion");
-            System.out.println("El Tiempo Actual es : "+tiempoActual);
+      
+        particionesFinal = asignarParticion(listaParticiones, procesos, tiempoActual, 0, 0, 0, resultado);
 
-            System.out.println("Asignando partición para : " + proceso.getNombre()+" Tamanio: "+proceso.getTamanio());
-            Particion particion = asignarParticion(listaParticiones,proceso,tiempoActual,tiempoSeleccion,tiempoCargaPromedio,tiempoLiberacion,resultado);
-
-           System.out.println("Tamanio de la lista de procesos:"+procesos.size());
-            System.out.println("------------------------------");
-
-            if (particion!=null){
-             System.out.println("Particion asignada");
-            }
-
-            tiempoActual++;
-        }
-
+        return resultado.getFragmentacion();
+    }
+ 
+    
    //     System.out.println("La fragmentacion es: "+resultado.getFragmentacion());
 
 
@@ -128,11 +115,6 @@ public class Simulador {
             System.out.println("Error al cerrar los archivos de registro: " + e.getMessage());
         }
 */
-
-
-        return resultado.getFragmentacion();
-    }
-
 
 
 
