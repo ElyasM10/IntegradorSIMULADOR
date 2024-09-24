@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6100c580-8447-4a65-b8e7-69912e89a953" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/AsignacionMemoria.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/AsignacionMemoria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/Simulador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/Simulador.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Clases/AsignacionMemoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/AsignacionMemoria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Clases/Particion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Particion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Clases/Simulador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Simulador.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
