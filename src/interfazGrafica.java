@@ -78,17 +78,55 @@ public class interfazGrafica extends JFrame {
 
 
         // Boton de cargar y simular
+
         JButton btnCargar = new JButton("Cargar y Simular");
         btnCargar.setAlignmentX(Component.CENTER_ALIGNMENT);
         panelEntrada.add(btnCargar);
 
+        /*
         btnCargar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Lógica de simulación al hacer clic
-                cargarYSimular(); // Descomentar si deseas utilizar esta función
+                cargarYSimular();
             }
         });
+         */
+        btnCargar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+
+                JOptionPane optionPane = new JOptionPane("Simulando... por favor espere",
+                        JOptionPane.INFORMATION_MESSAGE,
+                        JOptionPane.DEFAULT_OPTION, null,
+                        new Object[]{}, null);
+                JDialog dialog = optionPane.createDialog("Simulación");
+
+                // Mostrar el JDialog en un hilo separado para que se vea inmediatamente
+                dialog.setModal(false); // No bloquear la interfaz gráfica
+                dialog.setVisible(true);
+
+                // Usar SwingWorker para ejecutar la simulación en un hilo de fondo
+                SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+                    @Override
+                    protected Void doInBackground() throws Exception {
+                        // Llamar al método que toma tiempo
+                        cargarYSimular();
+                        return null;
+                    }
+
+                    @Override
+                    protected void done() {
+                        // Cerrar el diálogo una vez que termine la simulación
+                        dialog.dispose();
+                    }
+                };
+
+                // Ejecutar la tarea en segundo plano
+                worker.execute();
+            }
+        });
+
 
 
         add(panel);
@@ -179,6 +217,9 @@ public class interfazGrafica extends JFrame {
 
            listaAgraficar= simulador.simular();
 
+
+           System.out.println(""+listaAgraficar);
+           System.out.println("");
               // Actualizar el panel de Gantt con los nuevos datos
               ganttPanel.setParticiones(listaAgraficar, tamanioMemoria);
 
