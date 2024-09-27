@@ -105,7 +105,7 @@ public class PoliticaFirstFit {
                                 
 
                         Particion particionEncontrada = new Particion(
-                                i,
+                                ProcesoActual.getID(),
                                 tiempoInicio,
                                 ProcesoActual.getTamanio(),
                                 false,
@@ -139,7 +139,7 @@ public class PoliticaFirstFit {
                         graficarParticion = calcularGraficoParticion(listaParticiones,particion,graficarParticion);
 
                         Particion particionEncontrada = new Particion(
-                                i,
+                                ProcesoActual.getID(),
                                 tiempoInicio,
                                 ProcesoActual.getTamanio(),
                                 false,

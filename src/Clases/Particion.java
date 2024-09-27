@@ -9,6 +9,7 @@ public class Particion {
     private int graficarParticion;
     private boolean estado;
     private Proceso proceso;
+    private static int ultimoId = 0;
     //  private EstrategiaAsignacion estrategiaActual;
 
 /*
@@ -21,12 +22,17 @@ public class Particion {
   */
 
     public Particion(int id, int tiempoInicio, int tamanio, boolean estado, int tiempoFinalizacion,int graficarParticion) {
-        this.id = id;
+       // this.id = id;
+        this.id = generarId();
         this.tiempoInicio = tiempoInicio;
         this.tamanio = tamanio;
         this.estado = estado; 
         this.tiempoFinalizacion = tiempoFinalizacion;
         this.graficarParticion = graficarParticion;
+    }
+
+    private static int generarId() {
+        return ++ultimoId;
     }
 
 
