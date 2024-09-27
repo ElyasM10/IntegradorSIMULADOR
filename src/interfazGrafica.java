@@ -173,19 +173,17 @@ public class interfazGrafica extends JFrame {
             // Crear el simulador con la estrategia seleccionada
             simulador = new Simulador(listaProcesos, tamanioMemoria, tiempoSeleccion, tiempoCargaPromedio, tiempoLiberacion, estrategiaAsignacion);
 
-            // Actualizar el panel de Gantt con los nuevos datos
-            ganttPanel.setProcesos(listaProcesos, tamanioMemoria);
-
-            // Redibujar el panel de Gantt
-            ganttPanel.repaint();
-
-
       //   int fragmentacionExterna= simulador.simular();
 
           List<Particion> listaAgraficar = new ArrayList<>();
 
            listaAgraficar= simulador.simular();
 
+              // Actualizar el panel de Gantt con los nuevos datos
+              ganttPanel.setParticiones(listaAgraficar, tamanioMemoria);
+
+              // Redibujar el panel de Gantt
+              ganttPanel.repaint();
 
         // System.out.println("Interfaz FE: "+fragmentacionExterna);
 

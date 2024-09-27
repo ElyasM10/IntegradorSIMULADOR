@@ -6,7 +6,7 @@ import java.util.Random;
 import javax.swing.*;
 
 public class GanttPanel extends JPanel {
-    private List<Proceso> procesos;
+    private List<Particion> particiones;
 
     public int getTamanioMemoria() {
         return tamanioMemoria;
@@ -18,9 +18,9 @@ public class GanttPanel extends JPanel {
 
     private  int tamanioMemoria;
 
-    public GanttPanel(List<Proceso> procesos,int tamanioMemoria)
+    public GanttPanel(List<Particion> particiones,int tamanioMemoria)
     {
-        this.procesos = procesos;
+        this.particiones = particiones;
         this.tamanioMemoria = tamanioMemoria;
     }
 
@@ -29,8 +29,8 @@ public class GanttPanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
 
-        if (procesos == null || procesos.isEmpty()) {
-            return; // No hay procesos para mostrar
+        if (particiones == null || particiones.isEmpty()) {
+            return; // No hay Particions para mostrar
         }
 
         int chartHeight = getHeight();
@@ -71,44 +71,44 @@ public class GanttPanel extends JPanel {
             g2d.drawString(String.valueOf(i * 10), x - 10, xAxisHeight + 20); // Multiplica i por 10 para mantener el escalado original
         }
 
-        // Dibujar los procesos
+        // Dibujar los Particions
         Random random = new Random();
         int y = yOffset; // Reajustamos la posición inicial de y según el eje Y
 
         // Calcular el ancho total disponible para los rectángulos
         int maxAnchoDisponible = chartWidth - xOffset - 50; // Dejar un margen de 50 px a la derecha
 
-        // Encontrar la duración máxima de los procesos para calcular la escala
-        int maxDuracion = procesos.stream().mapToInt(Proceso::getDuracion).max().orElse(1);
+        // Encontrar la duración máxima de los Particions para calcular la escala
+        int maxDuracion = particiones.stream().mapToInt(Particion::getGraficarParticion).max().orElse(1);
 
-        // Calcular el factor de escala para que todos los procesos quepan dentro del gráfico
+        // Calcular el factor de escala para que todos los Particions quepan dentro del gráfico
         double escala = (double) maxAnchoDisponible / (maxDuracion * 10); // Ajuste de escala
 
-        for (Proceso proceso : procesos) {
-            int duracion = proceso.getDuracion();
+        for (Particion Particion : particiones) {
+            int duracion = Particion.getTamanio();
             int anchoRectangulo = (int) (duracion * 10 * escala); // Escalar el ancho del rectángulo
 
-            // Generar un color aleatorio para cada proceso
-            Color colorProceso = new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256));
-            g2d.setColor(colorProceso);
+            // Generar un color aleatorio para cada Particion
+            Color colorParticion = new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256));
+            g2d.setColor(colorParticion);
             g2d.fillRect(xOffset, y, anchoRectangulo, alturaRectangulo);
 
             // Dibujar borde del rectángulo
             g2d.setColor(Color.BLACK);
             g2d.drawRect(xOffset, y, anchoRectangulo, alturaRectangulo);
 
-            // Mostrar el nombre del proceso
-            g2d.setColor(Color.WHITE); // Usar blanco para que sea visible sobre los colores de fondo
-            g2d.drawString(proceso.getNombre(), xOffset + 5, y + 20);
+            // Mostrar el nombre del Particion
+          //  g2d.setColor(Color.WHITE); // Usar blanco para que sea visible sobre los colores de fondo
+          //  g2d.drawString(Particion.getNombre(), xOffset + 5, y + 20);
 
-            // Mover la posición y para el siguiente proceso
+            // Mover la posición y para el siguiente Particion
             y += alturaRectangulo + separacionVertical;
         }
     }
 
-    // Método para actualizar la lista de procesos y redibujar el panel
-    public void setProcesos(List<Proceso> procesos,int tamanioMemoria) {
-        this.procesos = procesos;
+    // Método para actualizar la lista de Particions y redibujar el panel
+    public void setParticiones(List<Particion> particiones,int tamanioMemoria) {
+        this.particiones = particiones;
         this.tamanioMemoria = tamanioMemoria;
         repaint();
     }
