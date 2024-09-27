@@ -1,6 +1,7 @@
 package Clases;
 
 
+import Clases.Politicas.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,25 +62,32 @@ public class Simulador {
     public Simulador() {
     }
 
-    public List<Particion> asignarParticion(List<Particion> listaParticiones, List<Proceso> procesos, int tiempoActual, int tiempoSeleccion, int tiempoCargaPromedio, int tiempoLiberacion, Resultado resultado) {
+    public List<Particion> asignarParticion(List<Particion> listaParticiones, List<Proceso> procesos, int tiempoSeleccion, int tiempoCargaPromedio, int tiempoLiberacion, Resultado resultado) {
         Particion particionAsignada = null;
 
         switch (estrategiaActual) {
             case 1 -> {
-                System.out.println("Entrando a First Fit");
-                particionesFinal = asignador.firstFit(listaParticiones, procesos, tiempoActual, tiempoSeleccion, tiempoCargaPromedio, tiempoLiberacion, resultado);
+                System.out.println("Simulador: First Fit");
+                PoliticaFirstFit ff = new PoliticaFirstFit();
+             //     particionesFinal = asignador.firstFit(listaParticiones, procesos, tiempoSeleccion, tiempoCargaPromedio, tiempoLiberacion, resultado);
+                particionesFinal = ff.firstFit(listaParticiones, procesos, tiempoSeleccion, tiempoCargaPromedio, tiempoLiberacion, resultado);
             }
             case 2 -> {
-                System.out.println("Entrando a Best Fit");
-                particionAsignada = asignador.bestFit(listaParticiones, procesos, tiempoActual, tiempoSeleccion, tiempoCargaPromedio, tiempoLiberacion);
+                System.out.println("Simulador: Best Fit");
+                PoliticaBestFit bf = new PoliticaBestFit();
+             //   particionesFinal = asignador.bestFit(listaParticiones, procesos, tiempoSeleccion, tiempoCargaPromedio, tiempoLiberacion,resultado);
+                particionesFinal = bf.bestFit(listaParticiones, procesos, tiempoSeleccion, tiempoCargaPromedio, tiempoLiberacion, resultado);
             }
             case 3 -> {
-                System.out.println("Entrando a Next Fit");
-                particionAsignada = asignador.nextFit(listaParticiones, procesos, tiempoActual, tiempoSeleccion, tiempoCargaPromedio, tiempoLiberacion);
+                System.out.println("Simulador: Next Fit");
+                PoliticaNextFit nf = new PoliticaNextFit();
+                //particionesFinal = asignador.nextFit(listaParticiones, procesos, tiempoSeleccion, tiempoCargaPromedio, tiempoLiberacion,resultado);
+                particionesFinal = nf.nextFit(listaParticiones, procesos, tiempoSeleccion, tiempoCargaPromedio, tiempoLiberacion,resultado);
             }
             case 4 -> {
-                System.out.println("Entrando a Worst Fit");
-                particionAsignada = asignador.worstFit(listaParticiones, procesos, tiempoActual, tiempoSeleccion, tiempoCargaPromedio, tiempoLiberacion);
+                System.out.println("Simulador: Worst Fit");
+                PoliticaWorstFit wf = new PoliticaWorstFit();
+                particionesFinal = wf.worstFit(listaParticiones, procesos, tiempoSeleccion, tiempoCargaPromedio, tiempoLiberacion,resultado);
             }
         }
 
@@ -88,21 +96,28 @@ public class Simulador {
    
 
     
-public int simular() {
-        int tiempoActual = 0;
+public List<Particion> simular() {
+
 
         System.out.println("Entrando al simulador");
 
-        Particion particionInicial = new Particion(0, -1, tamanioMemoria, true, -1);
+  //      imprimirDatosSimulador();
+
+        Particion particionInicial = new Particion(0, -1, tamanioMemoria, true, -1,0);
         listaParticiones.add(particionInicial);
 
         Resultado resultado = new Resultado();
 
-      
-        particionesFinal = asignarParticion(listaParticiones, procesos, tiempoActual, 0, 0, 0, resultado);
 
-        return resultado.getFragmentacion();
+
+      
+        particionesFinal = asignarParticion(listaParticiones, procesos, tiempoSeleccion, tiempoCargaPromedio, tiempoLiberacion, resultado);
+
+      //  return resultado.getFragmentacion();
+          return particionesFinal;
+
     }
+ 
  
     
    //     System.out.println("La fragmentacion es: "+resultado.getFragmentacion());

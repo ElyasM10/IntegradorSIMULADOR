@@ -180,9 +180,14 @@ public class interfazGrafica extends JFrame {
             ganttPanel.repaint();
 
 
-         int fragmentacionExterna= simulador.simular();
+      //   int fragmentacionExterna= simulador.simular();
 
-         System.out.println("Interfaz FE: "+fragmentacionExterna);
+          List<Particion> listaAgraficar = new ArrayList<>();
+
+           listaAgraficar= simulador.simular();
+
+
+        // System.out.println("Interfaz FE: "+fragmentacionExterna);
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Error en el formato de los números: " + ex.getMessage());
@@ -190,11 +195,7 @@ public class interfazGrafica extends JFrame {
     }
 
 
-    // Método para mostrar los resultados de la simulacion como un diagrama de Gantt
-   //private void mostrarResultados() {
-      // ganttPanel.setProcesos(simulador.getProcesos(),tamanioMemoria); // Actualizar el panel de Gantt con los procesos simulados
-    //}
-
+  
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
@@ -203,3 +204,8 @@ public class interfazGrafica extends JFrame {
     }
 
 }
+
+  // Método para mostrar los resultados de la simulacion como un diagrama de Gantt
+   //private void mostrarResultados() {
+      // ganttPanel.setProcesos(simulador.getProcesos(),tamanioMemoria); // Actualizar el panel de Gantt con los procesos simulados
+    //}
