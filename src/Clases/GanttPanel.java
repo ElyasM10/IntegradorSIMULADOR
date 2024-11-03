@@ -21,6 +21,8 @@ public class GanttPanel extends JPanel {
     private int fragmentacionExterna;
     private String politica;
     private int tiemporRetorno;
+    private static final int MARGEN = 50;
+    private static final int DESPLAZAMIENTO_EJE = 70;
 
 
     public GanttPanel(List<Particion> particiones, int tamanioMemoria) {
@@ -114,6 +116,7 @@ public class GanttPanel extends JPanel {
         }
     }
 */
+    /*
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -176,7 +179,198 @@ public class GanttPanel extends JPanel {
         g2d.drawString("FRAGMENTACION EXTERNA: " + fragmentacionExterna, 5, chartHeight - 30);
         g2d.drawString("POLITICA: " + politica, 5, chartHeight - 15);
     }
+  */
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
 
+        int ancho = getWidth();
+        int alto = getHeight();
+        int alturaGrafico = alto - 2 * MARGEN;
+
+        // Calcular escalas
+        double escalaY = (double)(alturaGrafico - DESPLAZAMIENTO_EJE) / (tamanioMemoria + 10); // +10 para el margen superior
+        double escalaX = (double)(ancho - DESPLAZAMIENTO_EJE - MARGEN) / tiemporRetorno;
+
+        dibujarEjeY(g2d, alturaGrafico, escalaY);
+        dibujarEjeX(g2d, ancho, alturaGrafico, escalaX);
+        dibujarParticiones(g2d, alturaGrafico, escalaX, escalaY);
+        dibujarTitulos(g2d);
+    }
+
+    private void dibujarEjeY(Graphics2D g2d, int alturaGrafico, double escalaY) {
+        g2d.setColor(Color.BLACK);
+        g2d.drawLine(DESPLAZAMIENTO_EJE, MARGEN, DESPLAZAMIENTO_EJE, alturaGrafico);
+
+        for (int i = 0; i <= tamanioMemoria; i += 10) {
+            int y = alturaGrafico - (int)(i * escalaY) - MARGEN;
+            g2d.drawLine(DESPLAZAMIENTO_EJE - 5, y, DESPLAZAMIENTO_EJE, y);
+            g2d.drawString(i + "k", DESPLAZAMIENTO_EJE - 40, y + 5);
+        }
+    }
+
+    private void dibujarEjeX(Graphics2D g2d, int ancho, int alturaGrafico, double escalaX) {
+        g2d.drawLine(DESPLAZAMIENTO_EJE, alturaGrafico - MARGEN, ancho - MARGEN, alturaGrafico - MARGEN);
+
+        for (int i = 0; i <= tiemporRetorno; i++) {
+            int x = DESPLAZAMIENTO_EJE + (int)(i * escalaX);
+            g2d.drawLine(x, alturaGrafico - MARGEN, x, alturaGrafico - MARGEN + 5);
+            g2d.drawString(String.valueOf(i), x - 5, alturaGrafico - MARGEN + 20);
+        }
+    }
+
+    private void dibujarParticiones(Graphics2D g2d, int alturaGrafico, double escalaX, double escalaY) {
+        Color[] colores = {
+                new Color(31, 119, 180),   // Azul
+                new Color(255, 127, 14),   // Naranja
+                new Color(44, 160, 44),    // Verde
+                new Color(214, 39, 40),    // Rojo
+                new Color(148, 103, 189),  // Morado
+                new Color(140, 86, 75),    // Marrón
+                new Color(227, 119, 194),  // Rosa
+                new Color(127, 127, 127),  // Gris
+                new Color(188, 189, 34),   // Verde-amarillo
+                new Color(23, 190, 207)    // Turquesa
+        };
+
+        for (int i = 0; i < particiones.size(); i++) {
+            Particion p = particiones.get(i);
+
+            // Calcular dimensiones y posición
+            double ejeY = p.getGraficarParticion();
+            int altura = (int)(p.getTamanio() * escalaY);
+            int y = alturaGrafico - MARGEN - (int)(ejeY * escalaY) - altura;
+            int ancho = (int)((p.getTiempoFinalizacion() - p.getTiempoInicio()) * escalaX);
+            int x = DESPLAZAMIENTO_EJE + (int)(p.getTiempoInicio() * escalaX);
+
+            // Debug info
+            System.out.println("Partición T" + p.getIdTarea() +
+                    " - x:" + x +
+                    " y:" + y +
+                    " ancho:" + ancho +
+                    " altura:" + altura +
+                    " ejeY:" + ejeY);
+
+            // Dibujar partición
+            g2d.setColor(colores[i % colores.length]);
+            g2d.fillRect(x, y, ancho, altura);
+            g2d.setColor(Color.BLACK);
+            g2d.drawRect(x, y, ancho, altura);
+
+            // Dibujar etiqueta
+            String etiqueta = "T" + p.getIdTarea() + "-" + p.getTamanio() + "K";
+            FontMetrics fm = g2d.getFontMetrics();
+            int anchoEtiqueta = fm.stringWidth(etiqueta);
+            g2d.setColor(Color.BLACK);
+            g2d.drawString(etiqueta, x + (ancho - anchoEtiqueta) / 2, y + altura / 2);
+        }
+    }
+    private void dibujarTitulos(Graphics2D g2d) {
+        g2d.setColor(Color.BLACK);
+        g2d.drawString("FRAGMENTACION EXTERNA: " + fragmentacionExterna, 5, 20);
+        g2d.drawString("POLITICA: " + politica, 5, 40);
+    }
+
+
+/*
+    falta los valores del eje y , que se basa en el tamaño de la memoriaPrincipal si el tamaño es de 130 el eje y su maximo es 130
+    y tiene que ir de 10 en 10, es decir 10k,20k,30k,40k,50k,60k,70k,80k,90k,100k,110k,120k,130k.
+            y las particiones tienes que adapter al alto del eje y la tarea 1 ocupa 20k tiene que ocupar esos 20k.
+            y ademas no se tiene que pasar de los limites del frame
+
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+
+        int chartWidth = getWidth();
+        int chartHeight = getHeight();
+
+        // Ajustar offsets y dimensiones
+        int xOffset = 70;  // Aumentado para dar más espacio a las etiquetas del eje Y
+        int yOffset = 50;
+        int xAxisHeight = chartHeight - 100;
+
+        // Configurar el rango del eje Y
+        int maxMemY =getTamanioMemoria() ;  // Máximo valor en Y (130k)
+        int intervalY = 10; // Intervalo entre marcas del eje Y
+        double yScale = (double)(xAxisHeight - yOffset) / maxMemY;  // Factor de escala para convertir valores de memoria a píxeles
+
+        // Dibujar eje Y
+        g2d.setColor(Color.BLACK);
+        g2d.drawLine(xOffset, yOffset, xOffset, xAxisHeight);
+        for (int i = 0; i <= maxMemY; i += intervalY) {
+            int y = xAxisHeight - (int)(i * yScale);
+            g2d.drawLine(xOffset - 5, y, xOffset, y);
+            g2d.drawString(i + "k", xOffset - 40, y + 5);
+        }
+
+        // Configurar el rango del eje X
+        int maxX = getTiemporRetorno();  // Máximo valor en X
+        double xScale = (double)(chartWidth - xOffset - 50) / maxX;  // Factor de escala para convertir tiempo a píxeles
+
+        // Dibujar eje X
+        g2d.drawLine(xOffset, xAxisHeight, chartWidth - 50, xAxisHeight);
+        for (int i = 0; i <= maxX; i++) {
+            int x = xOffset + (int)(i * xScale);
+            g2d.drawLine(x, xAxisHeight, x, xAxisHeight + 5);
+            g2d.drawString(String.valueOf(i), x - 5, xAxisHeight + 20);
+        }
+
+        // Colores predefinidos para las particiones
+        Color[] colors = {
+                new Color(31, 119, 180),   // T1 - Azul
+                new Color(255, 127, 14),   // T2 - Naranja
+                new Color(44, 160, 44),    // T3 - Verde
+                new Color(214, 39, 40),    // T4 - Rojo
+                new Color(148, 103, 189),  // T5 - Morado
+                new Color(140, 86, 75),    // T6 - Marrón
+                new Color(227, 119, 194),  // T7 - Rosa
+                new Color(127, 127, 127),  // T8 - Gris
+                new Color(188, 189, 34),   // T9 - Verde-amarillo
+                new Color(23, 190, 207)    // T10 - Turquesa
+        };
+
+        // Dibujar las particiones
+        for (int i = 0; i < particiones.size(); i++) {
+            Particion p = particiones.get(i);
+
+            // Calcular dimensiones y posición
+            double altura = p.getTamanio() * yScale;
+            double y = xAxisHeight - (p.getGraficarParticion() * yScale) - altura;
+            double ancho = (p.getTiempoFinalizacion() - p.getTiempoInicio()) * xScale;
+            double x = xOffset + (p.getTiempoInicio() * xScale);
+
+            // Dibujar el rectángulo de la partición
+            g2d.setColor(colors[i % colors.length]);
+            g2d.fillRect((int)x, (int)y, (int)ancho, (int)altura);
+            g2d.setColor(Color.BLACK);
+            g2d.drawRect((int)x, (int)y, (int)ancho, (int)altura);
+
+            // Agregar la etiqueta centrada
+            String label = "T" + p.getIdTarea() + "-" + p.getTamanio() + "K";
+            FontMetrics fm = g2d.getFontMetrics();
+            int labelWidth = fm.stringWidth(label);
+            int labelHeight = fm.getHeight();
+            g2d.setColor(Color.BLACK);
+            g2d.drawString(label,
+                    (int)(x + (ancho - labelWidth) / 2),
+                    (int)(y + (altura + labelHeight) / 2));
+        }
+
+        // Dibujar títulos
+        g2d.setColor(Color.BLACK);
+        g2d.drawString("FRAGMENTACION EXTERNA: " + fragmentacionExterna, 5, 20);
+        g2d.drawString("POLITICA: " + politica, 5, 40);
+    }
+
+
+
+*/
     // Metodo para actualizar la lista de Particions y redibujar el panel
     public void setDatos(List<Particion> particiones,int tamanioMemoria,int fragmentacion,String politica,int TRT) {
         this.particiones = particiones;

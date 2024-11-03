@@ -117,37 +117,39 @@ public class PoliticaWorstFit {
                         listaParticiones.remove(particionL);
                         listaProcesos.remove(ProcesoActual);
 
-                    } else if (particionL.getTamanio() > ProcesoActual.getTamanio()){
-
-                      int graficarParticion = 0;
+                    } else if (particionL.getTamanio() > ProcesoActual.getTamanio()) {
                         int tiempoInicio = tiempoCargaPromedio + tiempoSeleccion + tiempoActual;
                         int tiempoFinalizacion = tiempoInicio + ProcesoActual.getDuracion() + tiempoLiberacion;
+                        int graficarParticion = 0;
 
-                     //   graficarParticion = calcularGraficoParticion(listaParticiones, particionL, graficarParticion);
+                        graficarParticion = calcularGraficoParticion(listaParticiones, particionL, graficarParticion);
 
-                        Particion particionEncontrada = new Particion(
-                                tiempoInicio,
-                                ProcesoActual.getTamanio(),
-                                false,
-                                tiempoFinalizacion,
-                                graficarParticion,
-                                ProcesoActual.getID()
-                        );
-                        particiones.add(particionEncontrada);
-                        listaParticiones.add(listaParticiones.indexOf(particionL) + 1, particionEncontrada);
+                            // Crear partición ocupada
+                            Particion particionEncontrada = new Particion(
+                                    tiempoInicio,
+                                    ProcesoActual.getTamanio(),
+                                    false,
+                                    tiempoFinalizacion,
+                                    graficarParticion,
+                                    ProcesoActual.getID()
+                            );
+                            particiones.add(particionEncontrada);
+                            listaParticiones.set(listaParticiones.indexOf(particionL), particionEncontrada); // Reemplaza la partición ocupada
 
-                        Particion particionLibre = new Particion(
-                                -1,
-                                particionL.getTamanio() - ProcesoActual.getTamanio(),
-                                true,
-                                -1,
-                                0,
-                                -1
-                        );
-                        listaParticiones.add(listaParticiones.indexOf(particionL) + 2, particionLibre);
-                        listaParticiones.remove(particionL);
-                        listaProcesos.remove(ProcesoActual);
-                    }
+                            // Crear partición libre
+                            Particion particionLibre = new Particion(
+                                    -1,
+                                    particionL.getTamanio() - ProcesoActual.getTamanio(),
+                                    true,
+                                    -1,
+                                    0,
+                                    -1
+                            );
+
+                            // Añadir partición libre
+                            listaParticiones.add(listaParticiones.indexOf(particionEncontrada) + 1, particionLibre);
+                            listaProcesos.remove(ProcesoActual);
+                        }
                 }
                 i++;
             }
@@ -197,6 +199,29 @@ public class PoliticaWorstFit {
         }
         return resultado;
     }
+
+/*
+    Como deberia ser:
+    particiones: [id: 15,estado: False. tiempo Inicio:17 Tiempo Finalizacion:29 tamaño:30 idTrabajo:7]
+    particiones: [id: 4,estado: False. tiempo Inicio:5 Tiempo Finalizacion:22 tamaño:20 idTrabajo:2]
+    particiones: [id: 16,estado: False. tiempo Inicio:18 Tiempo Finalizacion:23 tamaño:10 idTrabajo:8]
+    particiones: [id: 20,estado: True. tiempo Inicio:-1 Tiempo Finalizacion:-1 tamaño:30 idTrabajo:-1]
+    particiones: [id: 13,estado: False. tiempo Inicio:16 Tiempo Finalizacion:26 tamaño:20 idTrabajo:6]
+    particiones: [id: 18,estado: False. tiempo Inicio:19 Tiempo Finalizacion:26 tamaño:10 idTrabajo:9]
+    particiones: [id: 19,estado: True. tiempo Inicio:-1 Tiempo Finalizacion:-1 tamaño:10 idTrabajo:-1]
+
+    como lo esta haciendo el codigo en java:
+    Particiones disponibles después de actualizar: [Particion{id=15, tiempoInicio=17, tamanio=30, estado=false, tiempoFinalizacion=29, graficarParticion=30,idTarea=7}]
+    Particiones disponibles después de actualizar: [Particion{id=4, tiempoInicio=5, tamanio=20, estado=false, tiempoFinalizacion=22, graficarParticion=0,idTarea=2}]
+    Particiones disponibles después de actualizar: [Particion{id=16, tiempoInicio=18, tamanio=10, estado=false, tiempoFinalizacion=23, graficarParticion=0,idTarea=8}]
+    Particiones disponibles después de actualizar: [Particion{id=17, tiempoInicio=-1, tamanio=10, estado=true, tiempoFinalizacion=-1, graficarParticion=0,idTarea=-1}]
+    Particiones disponibles después de actualizar: [Particion{id=20, tiempoInicio=23, tamanio=20, estado=false, tiempoFinalizacion=33, graficarParticion=30,idTarea=10}]
+    Particiones disponibles después de actualizar: [Particion{id=13, tiempoInicio=16, tamanio=20, estado=false, tiempoFinalizacion=26, graficarParticion=0,idTarea=6}]
+    Particiones disponibles después de actualizar: [Particion{id=18, tiempoInicio=19, tamanio=10, estado=false, tiempoFinalizacion=26, graficarParticion=0,idTarea=9}]
+    Particiones disponibles después de actualizar: [Particion{id=19, tiempoInicio=-1, tamanio=10, estado=true, tiempoFinalizacion=-1, graficarParticion=0,idTarea=-1}]
+
+    hay una particion de mas
+*/
 
 }
 

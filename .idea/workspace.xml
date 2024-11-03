@@ -6,23 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="6100c580-8447-4a65-b8e7-69912e89a953" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/AsignacionMemoria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/Particion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/Particion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/Politicas/PoliticaBestFit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/Politicas/PoliticaBestFit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/GanttPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/GanttPanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/Politicas/PoliticaFirstFit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/Politicas/PoliticaFirstFit.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/Politicas/PoliticaNextFit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/Politicas/PoliticaNextFit.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/Politicas/PoliticaWorstFit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/Politicas/PoliticaWorstFit.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/Proceso.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/Proceso.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/Resultado.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/Resultado.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/Simulador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Administracion de Memoria/Clases/Simulador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Administracion de Memoria/Main.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Clases/GanttPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/GanttPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Clases/Particion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Particion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Clases/Politicas/PoliticaBestFit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Politicas/PoliticaBestFit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Clases/Politicas/PoliticaFirstFit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Politicas/PoliticaFirstFit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Clases/Politicas/PoliticaNextFit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Politicas/PoliticaNextFit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Clases/Politicas/PoliticaWorstFit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Politicas/PoliticaWorstFit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Clases/Simulador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Simulador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfazGrafica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfazGrafica.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

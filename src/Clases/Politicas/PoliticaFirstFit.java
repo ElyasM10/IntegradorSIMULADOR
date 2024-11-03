@@ -11,7 +11,7 @@ public class PoliticaFirstFit {
 
     public PoliticaFirstFit(){}
 
-       public List<Particion> unificarParticiones(List<Particion> listaParticiones) {
+    public List<Particion> unificarParticiones(List<Particion> listaParticiones) {
         for (int i = 0; i < listaParticiones.size() - 1; i++) {
             Particion particionActual = listaParticiones.get(i);
             Particion particionSiguiente = listaParticiones.get(i + 1);
@@ -34,8 +34,6 @@ public class PoliticaFirstFit {
     }
     //no lo uso todavia , va ser para los graficos
     public int calcularGraficoParticion(List<Particion> listaParticiones,Particion particion ,int graficarParticion) {
-
-        /*
         for (Particion part : listaParticiones) {
             if (part.getEstado()) {
                 graficarParticion += part.getTamanio();
@@ -45,24 +43,6 @@ public class PoliticaFirstFit {
                 break;
             }
         }
-         */
-        for (Particion p : listaParticiones) {
-            if (p.getEstado() && listaParticiones.indexOf(p) == listaParticiones.size() - 1) {
-                // Si la partición está activa y es la última en la lista, se detiene el bucle
-                break;
-            }
-
-            if (p == particion) {
-                // Si llegamos a la partición deseada, se detiene el bucle
-                break;
-            }
-
-            // Sumar el tamaño de la partición al ejeY
-            graficarParticion+= p.getTamanio();
-        }
-
-
-
         return graficarParticion;
     }
 
@@ -71,7 +51,6 @@ public class PoliticaFirstFit {
         int fragmentacionExterna = 0;
         int tiempoActual = 0;
         int indice = 0;
-        int graficarParticion = 0;
         List<Particion> particiones = new ArrayList<>();
 
         System.out.println("Estoy en la politica firstFit ");
@@ -110,10 +89,10 @@ public class PoliticaFirstFit {
 
                     if (particion.getTamanio() == ProcesoActual.getTamanio()) {
 
- 
 
+                        int graficarParticion = 0;
                         graficarParticion = calcularGraficoParticion(listaParticiones,particion,graficarParticion);
-                                
+
 
                         Particion particionEncontrada = new Particion(
                                 tiempoInicio,
@@ -130,12 +109,11 @@ public class PoliticaFirstFit {
                         //listaParticiones.add(particionEncontrada);
                         listaParticiones.add(listaParticiones.indexOf(particion), particionEncontrada);
                         listaParticiones.remove(particion);
-                    
+
 
                     } else if (particion.getTamanio() > ProcesoActual.getTamanio()) {
 
- 
-
+                        int graficarParticion = 0;
                         graficarParticion = calcularGraficoParticion(listaParticiones,particion,graficarParticion);
 
                         Particion particionEncontrada = new Particion(
@@ -146,10 +124,8 @@ public class PoliticaFirstFit {
                                 graficarParticion,
                                 ProcesoActual.getID()
                         );
-
                         System.out.println("El Proceso " + ProcesoActual.getNombre() + " encontró partición");
                         System.out.println(particionEncontrada);
-
                         particiones.add(particionEncontrada);
                         listaParticiones.add(listaParticiones.indexOf(particion) + 1, particionEncontrada);
                         Particion particionSobrante = new Particion(
@@ -169,7 +145,7 @@ public class PoliticaFirstFit {
                 }
                 i++;
             }
-       //  System.out.println("Tamanio de la lista de procesos antes de Fe: "+listaProcesos.size());
+            //  System.out.println("Tamanio de la lista de procesos antes de Fe: "+listaProcesos.size());
 
 
             // Calcular fragmentación externa
@@ -208,9 +184,8 @@ public class PoliticaFirstFit {
 
 
         System.out.println("fragmentación externa TOTAL: " + fragmentacionExterna);
-         resultado.setlistaDeParticiones(particiones);
-         resultado.setLongitudTrabajo(longitud);
-         resultado.setFragmentacion(fragmentacionExterna);
+        resultado.setlistaDeParticiones(particiones);
+        resultado.setLongitudTrabajo(longitud);
         return resultado;
     }
 }
