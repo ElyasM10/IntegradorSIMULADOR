@@ -1,7 +1,6 @@
 package Clases.Politicas;
 
 import Clases.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class PoliticaNextFit {
                 int tamanioUnificado = particionActual.getTamanio() + particionSiguiente.getTamanio();
 
                 // Crear una nueva partición unificada
-                Particion nuevaParticion = new Particion(-1, -1, tamanioUnificado, true, -1,0);
+                Particion nuevaParticion = new Particion(-1, tamanioUnificado, true, -1,0,-1);
                 listaParticiones.set(i, nuevaParticion);  // Reemplazar la partición actual por la unificada
 
                 // Eliminar la partición siguiente
@@ -45,7 +44,7 @@ public class PoliticaNextFit {
     }
 
 
-    public List<Particion> nextFit(List<Particion> listaParticiones, List<Proceso> listaProcesos, int tiempoSeleccion, int tiempoCargaPromedio, int tiempoLiberacion, Resultado resultado) {
+    public Resultado nextFit(List<Particion> listaParticiones, List<Proceso> listaProcesos, int tiempoSeleccion, int tiempoCargaPromedio, int tiempoLiberacion, Resultado resultado) {
 
       System.out.println("Estoy en la politica nextFit ");
 
@@ -102,12 +101,12 @@ public class PoliticaNextFit {
                         graficarParticion = calcularGraficoParticion(listaParticiones,particion,graficarParticion);
 
                         Particion particionEncontrada = new Particion(
-                                i,
                                 tiempoInicio,
                                 ProcesoActual.getTamanio(),
                                 false,
                                 tiempoFinalizacion,
-                                graficarParticion
+                                graficarParticion,
+                                ProcesoActual.getID()
                         );
                         System.out.println("El Proceso " + ProcesoActual.getNombre() + " encontró partición");
                         particiones.add(particionEncontrada);
@@ -137,23 +136,23 @@ public class PoliticaNextFit {
 
 
                         Particion particionEncontrada = new Particion(
-                                i,
                                 tiempoInicio,
                                 ProcesoActual.getTamanio(),
                                 false,
                                 tiempoFinalizacion,
-                                graficarParticion
+                                graficarParticion,
+                                ProcesoActual.getID()
                         );
                         listaParticiones.add(listaParticiones.indexOf(particion) + 1, particionEncontrada);
                         particiones.add(particionEncontrada);
 
                         Particion particionLibre = new Particion(
                                 -1,
-                                -1,
                                 particion.getTamanio() - ProcesoActual.getTamanio(),
                                 true,
                                 -1,
-                                0
+                                0,
+                                -1
                         );
                         listaParticiones.add(listaParticiones.indexOf(particion) + 2, particionLibre);
 
@@ -193,9 +192,21 @@ public class PoliticaNextFit {
             e.printStackTrace();
         }  // Pausa de 1 segundo
 
-        System.out.println("Fragmentación externa TOTAL: " + fragmentacionExterna);
+        Particion particionConMayorTiempo = listaParticiones != null && !listaParticiones.isEmpty()
+                ? listaParticiones.stream()
+                .max((p1, p2) -> Integer.compare(p1.getTiempoFinalizacion(), p2.getTiempoFinalizacion()))
+                .orElse(null)
+                : null;
 
-        return particiones;
+        int longitud = particionConMayorTiempo != null
+                ? particionConMayorTiempo.getTiempoFinalizacion()
+                : tiempoActual;
+
+
+        System.out.println("fragmentación externa TOTAL: " + fragmentacionExterna);
+        resultado.setlistaDeParticiones(particiones);
+        resultado.setLongitudTrabajo(longitud);
+        return resultado;
     }
 
 

@@ -1,6 +1,5 @@
 package Clases;
 
-
 public class Particion {
     private int id;
     private int tiempoInicio;
@@ -10,31 +9,33 @@ public class Particion {
     private boolean estado;
     private Proceso proceso;
     private static int ultimoId = 0;
+    private int idTarea;
+
     //  private EstrategiaAsignacion estrategiaActual;
 
-/*
-      public enum EstrategiaAsignacion {
-        FIRST_FIT,
-        BEST_FIT,
-        NEXT_FIT,
-        WORST_FIT
-    }
-  */
 
-    public Particion(int id, int tiempoInicio, int tamanio, boolean estado, int tiempoFinalizacion,int graficarParticion) {
-       // this.id = id;
+public static int generarId() {
+    ultimoId++;
+    return ultimoId;
+}
+
+    public Particion(int tiempoInicio, int tamanio, boolean estado, int tiempoFinalizacion,int graficarParticion,int idTarea) {
         this.id = generarId();
         this.tiempoInicio = tiempoInicio;
         this.tamanio = tamanio;
         this.estado = estado; 
         this.tiempoFinalizacion = tiempoFinalizacion;
         this.graficarParticion = graficarParticion;
+        this.idTarea = idTarea;
     }
 
-    private static int generarId() {
-        return ++ultimoId;
+    public int getIdTarea() {
+        return idTarea;
     }
 
+    public void setIdTarea(int idTarea) {
+        this.idTarea = idTarea;
+    }
 
     public void setGraficarParticion(int graficarParticion){
         this.graficarParticion = graficarParticion;
@@ -104,6 +105,7 @@ public class Particion {
                 ", tamanio=" + tamanio +
                 ", estado=" + estado +
                 ", tiempoFinalizacion="+tiempoFinalizacion+
+                ",idTarea="+idTarea+
                 '}';
     }
 }
