@@ -34,6 +34,8 @@ public class PoliticaFirstFit {
     }
     //no lo uso todavia , va ser para los graficos
     public int calcularGraficoParticion(List<Particion> listaParticiones,Particion particion ,int graficarParticion) {
+
+        /*
         for (Particion part : listaParticiones) {
             if (part.getEstado()) {
                 graficarParticion += part.getTamanio();
@@ -43,6 +45,24 @@ public class PoliticaFirstFit {
                 break;
             }
         }
+         */
+        for (Particion p : listaParticiones) {
+            if (p.getEstado() && listaParticiones.indexOf(p) == listaParticiones.size() - 1) {
+                // Si la partición está activa y es la última en la lista, se detiene el bucle
+                break;
+            }
+
+            if (p == particion) {
+                // Si llegamos a la partición deseada, se detiene el bucle
+                break;
+            }
+
+            // Sumar el tamaño de la partición al ejeY
+            graficarParticion+= p.getTamanio();
+        }
+
+
+
         return graficarParticion;
     }
 
@@ -51,6 +71,7 @@ public class PoliticaFirstFit {
         int fragmentacionExterna = 0;
         int tiempoActual = 0;
         int indice = 0;
+        int graficarParticion = 0;
         List<Particion> particiones = new ArrayList<>();
 
         System.out.println("Estoy en la politica firstFit ");
@@ -90,7 +111,7 @@ public class PoliticaFirstFit {
                     if (particion.getTamanio() == ProcesoActual.getTamanio()) {
 
  
-                        int graficarParticion = 0;
+
                         graficarParticion = calcularGraficoParticion(listaParticiones,particion,graficarParticion);
                                 
 
@@ -114,7 +135,7 @@ public class PoliticaFirstFit {
                     } else if (particion.getTamanio() > ProcesoActual.getTamanio()) {
 
  
-                        int graficarParticion = 0;
+
                         graficarParticion = calcularGraficoParticion(listaParticiones,particion,graficarParticion);
 
                         Particion particionEncontrada = new Particion(
@@ -189,6 +210,7 @@ public class PoliticaFirstFit {
         System.out.println("fragmentación externa TOTAL: " + fragmentacionExterna);
          resultado.setlistaDeParticiones(particiones);
          resultado.setLongitudTrabajo(longitud);
+         resultado.setFragmentacion(fragmentacionExterna);
         return resultado;
     }
 }

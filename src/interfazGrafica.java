@@ -215,13 +215,13 @@ public class interfazGrafica extends JFrame {
 
           List<Particion> listaAgraficar = new ArrayList<>();
 
-           listaAgraficar= simulador.simular();
+        Resultado res = simulador.simular();
 
 
-           System.out.println(""+listaAgraficar);
-           System.out.println("");
+           //System.out.println(""+listaAgraficar);
+           //System.out.println("");
               // Actualizar el panel de Gantt con los nuevos datos
-              ganttPanel.setParticiones(listaAgraficar, tamanioMemoria);
+              ganttPanel.setDatos(res.getlistaDeParticiones(), tamanioMemoria,res.getFragmentacion(),politicaSeleccionada.toLowerCase(),res.getLongitudTrabajo());
 
               // Redibujar el panel de Gantt
               ganttPanel.repaint();

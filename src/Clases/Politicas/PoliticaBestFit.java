@@ -3,7 +3,9 @@ package Clases.Politicas;
 import Clases.Particion;
 import Clases.Proceso;
 import Clases.Resultado;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -105,26 +107,26 @@ public class PoliticaBestFit {
 
 
 
-                        int graficarParticion = 0;
-                        graficarParticion = calcularGraficoParticion(listaParticiones,particion,graficarParticion);
+                    int graficarParticion = 0;
+                    graficarParticion = calcularGraficoParticion(listaParticiones,particion,graficarParticion);
 
-                        int tiempoInicio = tiempoCargaPromedio + tiempoSeleccion + tiempoActual;
-                        int tiempoFinalizacion = tiempoInicio + ProcesoActual.getDuracion() + tiempoLiberacion;
-                        Particion particionEncontrada = new Particion(
-                                tiempoInicio,
-                                ProcesoActual.getTamanio(),
-                                false,
-                                tiempoFinalizacion,
-                                graficarParticion,
-                                ProcesoActual.getID()
-                        );
-                        System.out.println("El Proceso " + ProcesoActual.getNombre() + " encontró partición: " + particionEncontrada);
+                    int tiempoInicio = tiempoCargaPromedio + tiempoSeleccion + tiempoActual;
+                    int tiempoFinalizacion = tiempoInicio + ProcesoActual.getDuracion() + tiempoLiberacion;
+                    Particion particionEncontrada = new Particion(
+                            tiempoInicio,
+                            ProcesoActual.getTamanio(),
+                            false,
+                            tiempoFinalizacion,
+                            graficarParticion,
+                            ProcesoActual.getID()
+                    );
+                    System.out.println("El Proceso " + ProcesoActual.getNombre() + " encontró partición: " + particionEncontrada);
 
-                        particiones.add( particionEncontrada);
-                        listaParticiones.add(listaParticiones.indexOf(particion), particionEncontrada);
-                        listaParticiones.remove(particion);
+                    particiones.add( particionEncontrada);
+                    listaParticiones.add(listaParticiones.indexOf(particion), particionEncontrada);
+                    listaParticiones.remove(particion);
 
-                        if (particion.getTamanio() > ProcesoActual.getTamanio()) {
+                    if (particion.getTamanio() > ProcesoActual.getTamanio()) {
 
                         graficarParticion = calcularGraficoParticion(listaParticiones,particion,graficarParticion);
 

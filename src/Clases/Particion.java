@@ -105,6 +105,7 @@ public static int generarId() {
                 ", tamanio=" + tamanio +
                 ", estado=" + estado +
                 ", tiempoFinalizacion="+tiempoFinalizacion+
+                ", graficarParticion="+graficarParticion+
                 ",idTarea="+idTarea+
                 '}';
     }

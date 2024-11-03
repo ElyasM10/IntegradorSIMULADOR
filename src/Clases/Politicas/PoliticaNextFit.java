@@ -86,18 +86,6 @@ public class PoliticaNextFit {
 
 
                         int graficarParticion = 0;
-
-                  /*
-                        for (Particion part : listaParticiones) {
-                            if (part.getEstado()) {
-                                graficarParticion += part.getTamanio();
-                            }
-                            if (part == particion) {
-                                // Rompe el bucle al llegar a la partición actual
-                                break;
-                            }
-                        }
-                   */
                         graficarParticion = calcularGraficoParticion(listaParticiones,particion,graficarParticion);
 
                         Particion particionEncontrada = new Particion(
@@ -120,17 +108,6 @@ public class PoliticaNextFit {
                         int tiempoFinalizacion = tiempoInicio + ProcesoActual.getDuracion() + tiempoLiberacion;
 
                         int graficarParticion = 0;
-                        /*
-                        for (Particion part : listaParticiones) {
-                            if (part.getEstado()) {
-                                graficarParticion += part.getTamanio();
-                            }
-                            if (part == particion) {
-                                // Rompe el bucle al llegar a la partición actual
-                                break;
-                            }
-                        }
-                         */
                         graficarParticion = calcularGraficoParticion(listaParticiones,particion,graficarParticion);
 
 
